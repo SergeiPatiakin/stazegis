@@ -1,0 +1,90 @@
+{
+    "featureType": {
+        "circularArcPresent": false, 
+        "nativeBoundingBox": {
+            "minx": -180, 
+            "miny": -90, 
+            "maxx": 180, 
+            "maxy": 90, 
+            "crs": "EPSG:4326"
+        }, 
+        "name": "individual", 
+        "title": "individual", 
+        "latLonBoundingBox": {
+            "minx": -180, 
+            "miny": -90, 
+            "maxx": 180, 
+            "maxy": 90, 
+            "crs": "GEOGCS[\"WGS84(DD)\", \n  DATUM[\"WGS84\", \n    SPHEROID[\"WGS84\", 6378137.0, 298.257223563]], \n  PRIMEM[\"Greenwich\", 0.0], \n  UNIT[\"degree\", 0.017453292519943295], \n  AXIS[\"Geodetic longitude\", EAST], \n  AXIS[\"Geodetic latitude\", NORTH]]"
+        }, 
+        "enabled": true, 
+        "skipNumberMatched": false, 
+        "namespace": {
+            "href": "http://staze_workspace",
+            "name": "staze_workspace"
+        }, 
+        "projectionPolicy": "FORCE_DECLARED", 
+        "numDecimals": 0, 
+        "srs": "EPSG:4326", 
+        "overridingServiceSRS": false, 
+        "keywords": {
+            "string": [
+                "features", 
+                "individual"
+            ]
+        }, 
+        "attributes": {
+            "attribute": [
+                {
+                    "maxOccurs": 1, 
+                    "nillable": false, 
+                    "binding": "java.util.UUID", 
+                    "name": "name", 
+                    "minOccurs": 1
+                }, 
+                {
+                    "maxOccurs": 1, 
+                    "nillable": false, 
+                    "binding": "java.lang.String", 
+                    "name": "track_type", 
+                    "minOccurs": 1
+                }, 
+                {
+                    "maxOccurs": 1, 
+                    "nillable": false, 
+                    "binding": "com.vividsolutions.jts.geom.Geometry", 
+                    "name": "geom", 
+                    "minOccurs": 1
+                }
+            ]
+        }, 
+        "nativeName": "individual", 
+        "maxFeatures": 0, 
+        "store": {
+            "href": "http://localhost:9004/geoserver/rest/workspaces/staze_workspace/datastores/staze_datastore.json", 
+            "name": "staze_workspace:staze_datastore", 
+            "@class": "dataStore"
+        }, 
+        "metadata": {
+            "entry": [
+                {
+                    "@key": "JDBC_VIRTUAL_TABLE", 
+                    "virtualTable": {
+                        "parameter": {
+                            "defaultValue": "00000000-0000-0000-0000-000000000000", 
+                            "regexpValidator": "^[\\w\\d\\-]+$", 
+                            "name": "id"
+                        }, 
+                        "name": "individual", 
+                        "escapeSql": false, 
+                        "sql": "SELECT a.id as name, a.track_type, a.geom FROM public.mainapp_article AS a WHERE a.id='%id%'"
+                    }
+                }, 
+                {
+                    "@key": "cachingEnabled", 
+                    "$": "false"
+                }
+            ]
+        }
+    }
+}

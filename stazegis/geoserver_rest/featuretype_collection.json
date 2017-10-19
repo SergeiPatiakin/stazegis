@@ -1,0 +1,80 @@
+{
+    "featureType": {
+        "circularArcPresent": false, 
+        "nativeBoundingBox": {
+            "minx": -180, 
+            "miny": -90, 
+            "maxx": 180, 
+            "maxy": 90, 
+            "crs": "EPSG:4326"
+        }, 
+        "name": "merged_all", 
+        "title": "merged_all", 
+        "latLonBoundingBox": {
+            "minx": -180, 
+            "miny": -90, 
+            "maxx": 180, 
+            "maxy": 90, 
+            "crs": "EPSG:4326"
+        }, 
+        "enabled": true, 
+        "skipNumberMatched": false, 
+        "namespace": {
+            "href": "http://staze_workspace",
+            "name": "staze_workspace"
+        }, 
+        "projectionPolicy": "REPROJECT_TO_DECLARED",
+        "numDecimals": 0, 
+        "srs": "EPSG:4326",
+        "nativeCRS": "EPSG:4326",
+        "overridingServiceSRS": false, 
+        "keywords": {
+            "string": [
+                "features", 
+                "merged_all"
+            ]
+        }, 
+        "attributes": {
+            "attribute": [
+                {
+                    "maxOccurs": 1, 
+                    "nillable": false, 
+                    "binding": "java.util.UUID", 
+                    "name": "name", 
+                    "minOccurs": 1
+                }, 
+                {
+                    "maxOccurs": 1, 
+                    "nillable": false, 
+                    "binding": "java.lang.String", 
+                    "name": "track_type", 
+                    "minOccurs": 1
+                }, 
+                {
+                    "maxOccurs": 1, 
+                    "nillable": false, 
+                    "binding": "com.vividsolutions.jts.geom.Geometry", 
+                    "name": "geom", 
+                    "minOccurs": 1
+                }
+            ]
+        }, 
+        "nativeName": "merged_all", 
+        "maxFeatures": 0, 
+        "store": {
+            "href": "http://localhost:9004/geoserver/rest/workspaces/staze_workspace/datastores/dataimport_tracks.json", 
+            "name": "staze_workspace:dataimport_tracks", 
+            "@class": "dataStore"
+        }, 
+        "metadata": {
+            "entry": {
+                "@key": "JDBC_VIRTUAL_TABLE", 
+                "virtualTable": {
+                    "name": "merged_all", 
+                    "escapeSql": false, 
+                    "sql": "SELECT t.id as name, a.track_type, t.geom\r\nFROM public.app_article AS a\r\nJOIN public.dataimport_tracks AS t ON a.id = t.id\n"
+                }
+            }
+        }
+    }
+}

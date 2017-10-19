@@ -1,0 +1,8 @@
+DEBUG=True
+DB_HOST=db
+DB_PORT=5432
+DB_NAME=stazegis
+DB_USER=stazegisuser
+DB_PASSWORD=stazegispassword
+CERTBOT_SITE1=stazegis.dev
+CERTBOT_SITE2=www.stazegis.dev

@@ -1,0 +1,3 @@
+POSTGRES_DB=stazegis
+POSTGRES_USER=stazegisuser
+POSTGRES_PASSWORD=stazegispassword

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block headmeta %}
+        {% endblock headmeta %}
+
+        <!-- JQuery JS -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <!-- Bootstrap CSS -->
+            <link href="/static/bootstrap-dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Bootstrap JS -->
+            <script src="/static/bootstrap-dist/js/bootstrap.min.js"></script>
+
+        {% block headcontent %}
+        {% endblock headcontent %}
+    </head>
+    <body>
+        {% block pagenav %}
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">StazeGIS</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    {% block navcontent %}
+                    {% endblock navcontent %}
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">{{ user.get_short_name }}<span class="caret"></span></a>
+                                <ul class="dropdown-menu" id="btn-tracktype-container">
+                                    <li><a href="/logout/">Logout</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li><a href="/login/">Login</a></li>
+                        {% endif %}
+                        <li><a href="" data-toggle="modal" data-target="#contactModal">About</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <h2>About</h2>
+                        <p>&nbsp;</p>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="col-sm-3"><p class="text-right">Github:</p></td>
+                                <td class="col-sm-9"><p><a
+                                        href="http://github.com/sergeipatiakin/stazegis">sergeipatiakin/stazegis</a></p></td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-3"><p class="text-right">Maps:</p></td>
+                                <td class="col-sm-9"><p><a
+                                        href="http://www.openstreetmap.org/">openstreetmap.org</a></p></td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-3"><p class="text-right">Example data:</p></td>
+                                <td class="col-sm-9"><p><a
+                                        href="http://www.stazeibogaze.info//">stazeibogaze.info</a></p></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock pagenav %}
+
+        {% block pagecontent %}{% endblock pagecontent %}
+
+        {% block pagefooter %}
+            <script>window.jQuery</script>
+        {% endblock pagefooter %}
+    </body>
+</html>

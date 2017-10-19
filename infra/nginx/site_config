@@ -1,0 +1,38 @@
+server {
+
+    listen 80;
+    listen 443 default_server ssl;
+
+    ssl_certificate /etc/letsencrypt/live_site_dir/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live_site_dir/privkey.pem;
+
+    server_name staze.info www.staze.info;
+    charset utf-8;
+
+    location /favicon.ico {
+        alias /data/static/favicon.png;
+    }
+
+    location /static {
+        alias /data/static;
+    }
+
+    location /.well-known/acme-challenge {
+        alias /data/letsencrypt_webroot/.well-known/acme-challenge;
+    }
+
+    location / {
+        proxy_pass http://app:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location /geoserver {
+        proxy_pass http://geoserver:8080/geoserver;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+}

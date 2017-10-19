@@ -1,0 +1,14 @@
+version: '2'
+services:
+  nginx:
+    ports:
+      - "9001:80"
+  app:
+    ports:
+      - "9002:8000"
+  db:
+    ports:
+      - "9003:5432"
+  geoserver:
+    ports:
+      - "9004:8080"

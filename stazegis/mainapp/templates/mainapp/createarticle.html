@@ -1,0 +1,55 @@
+{% extends "./base.html" %}
+
+{% block headcontent %}
+    <title>Staze Balkana - Submit track</title>
+
+    <!-- Page CSS -->
+    <link href="/static/mainapp/createarticle.css" rel="stylesheet">
+
+    {% load staticfiles %}
+    <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+    <link href="{% static 'plugins/css/semantic.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+    <link href="{% static 'draceditor/css/draceditor.css' %}" type="text/css" media="all" rel="stylesheet" />
+
+{% endblock headcontent %}
+
+{% block pagecontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                {% load bootstrap3 %}
+
+                <h2>Submit track</h2>
+                {% bootstrap_messages %}
+                    <form class="form-horizontal" action='' method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% buttons %}
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="btn btn-success" type>Submit track</button>
+                            </div>
+                        </div>
+                        {% endbuttons %}
+                    </form>
+                    <p></p>
+            </div>
+        </div>
+    </div>
+{% endblock pagecontent %}
+
+{% block pagefooter %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/js/semantic.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/js/mode-markdown.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/js/ext-language_tools.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/js/theme-github.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/js/emojis.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'draceditor/js/draceditor.js' %}"></script>
+    <script>
+        // Hide full screen icon, as it cannot be closed
+        $(".markdown-toggle-maximize").hide();
+    </script>
+{% endblock pagefooter %}

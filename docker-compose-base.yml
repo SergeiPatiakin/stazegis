@@ -1,0 +1,56 @@
+version: '2'
+services:
+  nginx:
+    restart: unless-stopped
+    build:
+      context: ./infra/nginx/
+    volumes:
+      # Nginx reads fake certificates at /code/infra/ssl during bootstrapping
+      - .:/code
+      # Nginx reads static files at /data/static
+      - static:/data/static
+      # Nginx reads /etc/letsencrypt to find certificates
+      - letsencrypt:/etc/letsencrypt
+      # Nginx serves /data/letsencrypt_webroot as part of the Let's Encrypt challenge
+      - letsencrypt_webroot:/data/letsencrypt_webroot
+  app:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./infra/app/Dockerfile
+    env_file: ./config/app_env.txt
+    environment:
+      - GEOSERVER_REST_ENDPOINT=http://geoserver:8080/geoserver/rest/
+    volumes:
+      - .:/code
+      # Django collectstatic command writes to /data/static
+      - static:/data/static
+      # Certbot writes certificates to /etc/letsencrypt
+      - letsencrypt:/etc/letsencrypt
+      # Certbot writes challenge files to /data/letsencrypt_webroot
+      - letsencrypt_webroot:/data/letsencrypt_webroot
+    command: /usr/local/bin/gunicorn --chdir /code/stazegis stazegis.wsgi:application -w 2 -b :8000
+  db:
+    restart: unless-stopped
+    build:
+      context: ./infra/db
+    env_file: ./config/db_env.txt
+    volumes:
+      # Backup/restore scripts are located in /code/infra/db
+      - .:/code
+      # Postgres reads/writes to /var/lib/postgresql
+      - postgres_data:/var/lib/postgresql
+      # Postgres reads/writes backups to /data/postgres_backup
+      - postgres_backup:/data/postgres_backup
+  geoserver:
+    restart: unless-stopped
+    image: kartoza/geoserver:2.11.2
+    volumes:
+      - geoserver_data:/opt/geoserver/data_dir
+volumes:
+  static:
+  letsencrypt:
+  letsencrypt_webroot:
+  postgres_data:
+  postgres_backup:
+  geoserver_data:

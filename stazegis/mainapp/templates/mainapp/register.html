@@ -1,0 +1,33 @@
+{% extends "./base.html" %}
+
+{% block headcontent %}
+    <title>Stazegis - Registration</title>
+
+    <!-- Page CSS -->
+    <link href="/static/mainapp/login.css" rel="stylesheet">
+{% endblock headcontent %}
+
+{% block pagecontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                {% load bootstrap3 %}
+
+                <h2>Registration</h2>
+                {% bootstrap_messages %}
+                    <form class="form-horizontal" action='' method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% buttons %}
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="btn btn-success" type>Register</button>
+                            </div>
+                        </div>
+                        {% endbuttons %}
+                    </form>
+                    <p></p>
+            </div>
+        </div>
+    </div>
+{% endblock pagecontent %}

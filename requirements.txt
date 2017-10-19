@@ -1,0 +1,9 @@
+django
+djangorestframework
+psycopg2
+gunicorn
+celery
+requests
+draceditor
+django-bootstrap3
+# GDAL installed via custom Dockerfile command

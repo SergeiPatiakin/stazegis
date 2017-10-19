@@ -1,0 +1,19 @@
+{
+    "layer": {
+        "attribution": {
+            "logoWidth": 0, 
+            "logoHeight": 0
+        }, 
+        "resource": {
+            "href": "http://localhost:9004/geoserver/rest/workspaces/staze_workspace/datastores/staze_datastore/featuretypes/individual.json", 
+            "name": "individual", 
+            "@class": "featureType"
+        }, 
+        "type": "VECTOR", 
+        "name": "individual", 
+        "defaultStyle": {
+            "href": "http://localhost:9004/geoserver/rest/workspaces/staze_workspace/styles/individual_style.json",
+            "name": "staze_workspace:individual_style"
+        }
+    }
+}

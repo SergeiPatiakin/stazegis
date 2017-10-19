@@ -1,0 +1,124 @@
+{% extends "./base.html" %}
+{% block headmeta %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+{% endblock headmeta %}
+{% block headcontent %}
+    <title>StazeGIS</title>
+
+    <!-- OpenLayers CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.1/ol.css" type="text/css">
+
+    <!-- Page CSS -->
+        <link href="/static/mainapp/index.css" rel="stylesheet">
+
+    <!-- OpenLayers JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.1/ol.js"></script>
+
+{% endblock headcontent %}
+
+{% block navcontent %}
+<ul class="nav navbar-nav">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false">Trail types<span class="caret"></span></a>
+        <ul class="dropdown-menu" id="btn-tracktype-container">
+            <li class="active" id="btn-all"><a href="#">All</a></li>
+            <li role="separator" class="divider"></li>
+            <li id="btn-ped"><a href="#">Hiking trails</a></li>
+            <li id="btn-cyc"><a href="#">Bicycle trails</a></li>
+        </ul>
+    </li>
+    <!--
+    <li>
+
+        <form class="navbar-form navbar-left" role="search" action="" method="post" id="searchform">
+            {% csrf_token %}
+            <div class="form-group" id="searchbox">
+                <input type="text" class="form-control typeahead" id="searchboxinput" placeholder="Location">
+            </div>
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>&nbsp;
+            </button>
+        </form>
+    </li> -->
+    <li>
+        <a id="articleuploadlink" href="/createarticle/" role="button">Upload&nbsp;<span class="glyphicon glyphicon-plus"></span></a>
+    </li>
+</ul>
+{% endblock navcontent %}
+
+{% block pagecontent %}
+
+<div class="col-xs-12" id="container1">
+    <div class="row">
+        <div class="col-xs-6 col-sm-5 col-md-4 pull-right" id="trackdesc">
+            <!--<button type="button" class="btn btn-default" id="trackback">Nazad</button>
+            <button type="button" class="btn btn-primary" id="trackdetail">Više...</button>
+             -->
+
+            <!-- <p><a href="#trackdetail">Nazad u mapuBack to map (Esc)... </a></p>
+            <p><a href="#trackdetail">Vise<!-- Expand... </a></p>-->
+            <h3 id="tracktitle"></h3>
+            <hr />
+            <div id="usercontent"></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12" id="map">
+            <div id="trackdescclose">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+            <div id="trackdesctoggle">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </div>
+            <div id="elevchart"></div>
+        </div>
+    </div>
+</div>
+
+<!--
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2>Prijaviti se</h2>
+                <form class="form-horizontal" action='{ % url django.contrib.auth.views.login %}?next={{request.path}}' method="POST">
+                    { % csrf_token %}
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label" for="username">Email</label>
+                            <div class="controls">
+                                <input type="text" id="username" name="username" placeholder="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="password">Password</label>
+                            <div class="controls">
+                                <input type="password" id="password" name="password" placeholder="" class="form-control">
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="btn btn-success" type>Prijaviti se</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+
+
+{% endblock pagecontent %}
+
+{% block pagefooter %}
+    {{ block.super }}
+    <!-- Main page javascript-->
+    <script src="/static/mainapp/index.js"></script>
+{% endblock pagefooter %}
